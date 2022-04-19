@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.devfun.settingweb_boot.dao.StatisticMapper">
+ 
+    <select id="selectMonthLogin" parameterType="string" resultType="hashMap">
+        select yearMonth as yearMonth,
+        		count(distinct userID) as accessCnt
+        from(
+        select substr(createDate, 1, 4) as yearMonth,
+        		userID as userID
+        from statistc.requestInfo) as monthLogin
+        where yearMonth = #{month}
+        group by yearMonth
+        order by yearMonth asc;
+    </select>
+    
+</mapper>
