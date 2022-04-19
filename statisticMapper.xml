@@ -6,8 +6,7 @@
 <mapper namespace="com.devfun.settingweb_boot.dao.StatisticMapper">
  
     <select id="selectMonthLogin" parameterType="string" resultType="hashMap">
-        select yearMonth as yearMonth,
-        		count(distinct userID) as accessCnt
+        select count(distinct userID) as accessCnt
         from(
         select substr(createDate, 1, 4) as yearMonth,
         		userID as userID
